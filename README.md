@@ -109,15 +109,13 @@ A RESTful API for accessing the SmartCLIDE database (MongoDB). The API exposes t
 ### Example Request body
 
 ```json
-[
-	{
-	    "user_id": "628c87f6aa5a2857398a80a0",
-	    "type": "github",
-	    "url": "http://some_url",
-	    "username": "test",
-	    "token": "bcsuifgsiufgsfiuiu"
-	}
-]
+{
+    "user_id": "628c87f6aa5a2857398a80a0",
+    "type": "github",
+    "url": "http://some_url",
+    "username": "test",
+    "token": "bcsuifgsiufgsfiuiu"
+}
 ```
 
 ## /services (GET,POST,PUT,DELETE)
