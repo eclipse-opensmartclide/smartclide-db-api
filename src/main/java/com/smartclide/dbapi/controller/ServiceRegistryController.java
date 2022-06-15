@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +28,7 @@ public class ServiceRegistryController {
     }
 
     @PostMapping("/service_registries")
-    public ResponseEntity<ServiceRegistry> creteServiceRegistry(@RequestBody ServiceRegistry serviceRegistry) {
+    public ResponseEntity<ServiceRegistry> creteServiceRegistry(@RequestBody @Valid ServiceRegistry serviceRegistry) {
         try {
             ServiceRegistry _serviceRegistry = repository.save(serviceRegistry);
             return new ResponseEntity<>(_serviceRegistry, HttpStatus.CREATED);
@@ -37,7 +38,7 @@ public class ServiceRegistryController {
     }
 
     @PutMapping("/service_registries/{id}")
-    public ResponseEntity<ServiceRegistry> updateServiceRegistry(@PathVariable("id") String id, @RequestBody ServiceRegistry serviceRegistry) {
+    public ResponseEntity<ServiceRegistry> updateServiceRegistry(@PathVariable("id") String id, @RequestBody @Valid ServiceRegistry serviceRegistry) {
         try {
             Optional<ServiceRegistry> serviceRegistryData = repository.findById(id);
 

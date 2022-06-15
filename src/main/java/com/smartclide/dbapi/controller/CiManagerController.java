@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +28,7 @@ public class CiManagerController {
     }
 
     @PostMapping("/ci_managers")
-    public ResponseEntity<CiManager> createCiManager(@RequestBody CiManager ciManager) {
+    public ResponseEntity<CiManager> createCiManager(@RequestBody @Valid CiManager ciManager) {
         try {
             CiManager _ciManager = repository.save(ciManager);
             return new ResponseEntity<>(_ciManager, HttpStatus.CREATED);
@@ -37,7 +38,7 @@ public class CiManagerController {
     }
 
     @PutMapping("/ci_managers/{id}")
-    public ResponseEntity<CiManager> updateCiManager(@PathVariable("id") String id, @RequestBody CiManager ciManager) {
+    public ResponseEntity<CiManager> updateCiManager(@PathVariable("id") String id, @RequestBody @Valid CiManager ciManager) {
         try {
             Optional<CiManager> ciManagerData = repository.findById(id);
 

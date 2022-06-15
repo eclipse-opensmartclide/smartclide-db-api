@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +28,7 @@ public class GitCredentialsController {
     }
 
     @PostMapping("/git_credentials")
-    public ResponseEntity<GitCredentials> createGitCredentials(@RequestBody GitCredentials gitCredentials) {
+    public ResponseEntity<GitCredentials> createGitCredentials(@RequestBody @Valid GitCredentials gitCredentials) {
         try {
             GitCredentials _gitCredentials = repository.save(gitCredentials);
             return new ResponseEntity<>(_gitCredentials, HttpStatus.CREATED);
@@ -37,7 +38,7 @@ public class GitCredentialsController {
     }
 
     @PutMapping("/git_credentials/{id}")
-    public ResponseEntity<GitCredentials> updateGitCredentials(@PathVariable("id") String id, @RequestBody GitCredentials gitCredentials) {
+    public ResponseEntity<GitCredentials> updateGitCredentials(@PathVariable("id") String id, @RequestBody @Valid GitCredentials gitCredentials) {
         try {
             Optional<GitCredentials> gitCredentialsData = repository.findById(id);
 

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +28,7 @@ public class WorkflowController {
     }
 
     @PostMapping("/workflows")
-    public ResponseEntity<Workflow> createWorkflow(@RequestBody Workflow workflow) {
+    public ResponseEntity<Workflow> createWorkflow(@RequestBody @Valid Workflow workflow) {
         try {
             Workflow _workflow = repository.save(workflow);
             return new ResponseEntity<>(_workflow, HttpStatus.CREATED);
@@ -37,7 +38,7 @@ public class WorkflowController {
     }
 
     @PutMapping("/workflows/{id}")
-    public ResponseEntity<Workflow> updateWorkflow(@PathVariable("id") String id, @RequestBody Workflow workflow) {
+    public ResponseEntity<Workflow> updateWorkflow(@PathVariable("id") String id, @RequestBody @Valid Workflow workflow) {
         try {
             Optional<Workflow> workflowData = repository.findById(id);
 

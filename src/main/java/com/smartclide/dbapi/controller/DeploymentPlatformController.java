@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +28,7 @@ public class DeploymentPlatformController {
     }
 
     @PostMapping("deployment_platforms")
-    public ResponseEntity<DeploymentPlatform> createDeploymentPlatform(@RequestBody DeploymentPlatform deploymentPlatform) {
+    public ResponseEntity<DeploymentPlatform> createDeploymentPlatform(@RequestBody @Valid DeploymentPlatform deploymentPlatform) {
         try {
             DeploymentPlatform _deploymentPlatform = repository.save(deploymentPlatform);
             return new ResponseEntity<>(_deploymentPlatform, HttpStatus.CREATED);
@@ -37,7 +38,7 @@ public class DeploymentPlatformController {
     }
 
     @PutMapping("/deployment_platforms/{id}")
-    public ResponseEntity<DeploymentPlatform> updateDeploymentPlatform(@PathVariable("id") String id, @RequestBody DeploymentPlatform deploymentPlatform) {
+    public ResponseEntity<DeploymentPlatform> updateDeploymentPlatform(@PathVariable("id") String id, @RequestBody @Valid DeploymentPlatform deploymentPlatform) {
         try {
             Optional<DeploymentPlatform> deploymentPlatformData = repository.findById(id);
 

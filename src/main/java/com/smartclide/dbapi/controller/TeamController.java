@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +28,7 @@ public class TeamController {
     }
 
     @PostMapping("/teams")
-    public ResponseEntity<Team> createTeam(@RequestBody Team team) {
+    public ResponseEntity<Team> createTeam(@RequestBody @Valid Team team) {
         try {
             Team _team = repository.save(team);
             return new ResponseEntity<>(_team, HttpStatus.CREATED);
@@ -37,7 +38,7 @@ public class TeamController {
     }
 
     @PutMapping("/teams/{id}")
-    public ResponseEntity<Team> updateTeam(@PathVariable("id") String id, @RequestBody Team team) {
+    public ResponseEntity<Team> updateTeam(@PathVariable("id") String id, @RequestBody @Valid Team team) {
         try {
             Optional<Team> teamData = repository.findById(id);
 

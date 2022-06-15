@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +28,7 @@ public class DeploymentController {
     }
 
     @PostMapping("/deployments")
-    public ResponseEntity<Deployment> createDeployment(@RequestBody Deployment deployment) {
+    public ResponseEntity<Deployment> createDeployment(@RequestBody @Valid Deployment deployment) {
         try {
             Deployment _deployment = repository.save(deployment);
             return new ResponseEntity<>(_deployment, HttpStatus.CREATED);
@@ -37,7 +38,7 @@ public class DeploymentController {
     }
 
     @PutMapping("/deployments/{id}")
-    public ResponseEntity<Deployment> updateDeployment(@PathVariable("id") String id, @RequestBody Deployment deployment) {
+    public ResponseEntity<Deployment> updateDeployment(@PathVariable("id") String id, @RequestBody @Valid Deployment deployment) {
         try {
             Optional<Deployment> deploymentData = repository.findById(id);
 

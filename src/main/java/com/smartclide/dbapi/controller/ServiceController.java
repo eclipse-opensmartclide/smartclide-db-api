@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +30,7 @@ public class ServiceController {
     }
 
     @PostMapping("/services")
-    public ResponseEntity<Service> createService(@RequestBody Service service) {
+    public ResponseEntity<Service> createService(@RequestBody @Valid Service service) {
         try {
             Service _service = repository.save(service);
             return new ResponseEntity<>(_service, HttpStatus.CREATED);
@@ -39,7 +40,7 @@ public class ServiceController {
     }
 
     @PutMapping("/services/{id}")
-    public ResponseEntity<Service> updateService(@PathVariable("id") String id, @RequestBody Service service) {
+    public ResponseEntity<Service> updateService(@PathVariable("id") String id, @RequestBody @Valid Service service) {
         try {
             Optional<Service> serviceData = repository.findById(id);
 
