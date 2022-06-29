@@ -7,5 +7,4 @@ import java.util.Date;
 import java.util.List;
 
 public interface ServiceRepository extends MongoRepository<Service, String> {
-    List<Service> findByCreatedGreaterThan(Date date);
 }

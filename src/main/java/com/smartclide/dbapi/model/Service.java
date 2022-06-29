@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,14 +41,16 @@ public class Service {
 
     //@DocumentReference
     //private GitCredentials gitCredentials;
-    
+
     private String url;
 
     @NotNull
     private String description;
 
     @NotNull
-    private Boolean is_public;
+    @Field(value = "is_public")
+    @JsonProperty(value = "is_public")
+    private Boolean isPublic;
 
     private String licence;
 
