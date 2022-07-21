@@ -1,0 +1,5 @@
+site_name: SmartCLIDE DB API Component
+repo_url: https://github.com/eclipse-researchlabs/smartclide-db-api
+
+nav:
+  - DB API: 'index.md'
