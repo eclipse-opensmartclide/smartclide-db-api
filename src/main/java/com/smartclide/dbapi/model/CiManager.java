@@ -29,6 +29,6 @@ public class CiManager {
     @NotNull
     private String username;
 
-    @NotNull
+    //@NotNull
     private String token;
 }

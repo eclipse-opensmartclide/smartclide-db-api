@@ -3,6 +3,9 @@ package com.smartclide.dbapi.controller;
 import com.smartclide.dbapi.model.CiManager;
 import com.smartclide.dbapi.repository.CiManagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +20,17 @@ public class CiManagerController {
     @Autowired
     private CiManagerRepository repository;
 
+    @Autowired
+    private MongoTemplate template;
+
     @GetMapping("/ci_managers")
-    public List<CiManager> getAllCiManagers() {
-        return repository.findAll();
+    public List<CiManager> getAllCiManagers(@RequestParam(value = "user_id",required = false) String userId) {
+        Query query = new Query();
+        if (userId != null) {
+            query.addCriteria(Criteria.where("user_id").is(userId));
+        }
+        return template.find(query, CiManager.class, "ci_managers");
+        //return repository.findAll();
     }
 
     @GetMapping("/ci_managers/{id}")

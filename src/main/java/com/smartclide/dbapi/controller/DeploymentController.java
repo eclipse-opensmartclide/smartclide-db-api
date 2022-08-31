@@ -3,6 +3,9 @@ package com.smartclide.dbapi.controller;
 import com.smartclide.dbapi.model.Deployment;
 import com.smartclide.dbapi.repository.DeploymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +20,25 @@ public class DeploymentController {
     @Autowired
     private DeploymentRepository repository;
 
+    @Autowired
+    private MongoTemplate template;
+
     @GetMapping("/deployments")
-    public List<Deployment> getAllDeployments() {
-        return repository.findAll();
+    public List<Deployment> getAllDeployments(@RequestParam(value = "user_id",required = false) String userId,
+                                              @RequestParam(value = "service_id",required = false) String serviceId,
+                                              @RequestParam(value = "workflow_id",required = false) String workflowId) {
+        Query query = new Query();
+        if (userId != null) {
+            query.addCriteria(Criteria.where("user_id").is(userId));
+        }
+        if (serviceId != null) {
+            query.addCriteria(Criteria.where("service_id").is(serviceId));
+        }
+        if (workflowId != null) {
+            query.addCriteria(Criteria.where("workflow_id").is(workflowId));
+        }
+        return template.find(query, Deployment.class, "deployments");
+        //return repository.findAll();
     }
 
     @GetMapping("/deployments/{id}")

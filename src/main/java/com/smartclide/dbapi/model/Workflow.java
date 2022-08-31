@@ -1,9 +1,11 @@
 package com.smartclide.dbapi.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
+import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
@@ -22,7 +24,7 @@ public class Workflow {
     //@DocumentReference
     //private User user;
 
-    @NotNull
+    //@NotNull
     private String git_credentials_id;
 
     //@DocumentReference
@@ -34,15 +36,19 @@ public class Workflow {
     @NotNull
     private String url;
 
-    @NotNull
+    //@NotNull
     private String description;
 
     @NotNull
     private Boolean is_public;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @Field("created_at")
+    @JsonProperty("created_at")
     private Date created;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @Field("updated_at")
+    @JsonProperty("updated_at")
     private Date updated;
 }

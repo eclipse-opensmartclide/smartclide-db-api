@@ -3,6 +3,9 @@ package com.smartclide.dbapi.controller;
 import com.smartclide.dbapi.model.GitCredentials;
 import com.smartclide.dbapi.repository.GitCredentialsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +20,17 @@ public class GitCredentialsController {
     @Autowired
     private GitCredentialsRepository repository;
 
+    @Autowired
+    private MongoTemplate template;
+
     @GetMapping("/git_credentials")
-    public List<GitCredentials> getAllGitCredentials() {
-        return repository.findAll();
+    public List<GitCredentials> getAllGitCredentials(@RequestParam(value = "user_id",required = false) String userId) {
+        Query query = new Query();
+        if (userId != null) {
+            query.addCriteria(Criteria.where("user_id").is(userId));
+        }
+        return template.find(query, GitCredentials.class, "git_credentials");
+        //return repository.findAll();
     }
 
     @GetMapping("/git_credentials/{id}")

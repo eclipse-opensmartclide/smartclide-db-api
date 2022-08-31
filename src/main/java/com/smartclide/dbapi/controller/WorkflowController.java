@@ -3,6 +3,9 @@ package com.smartclide.dbapi.controller;
 import com.smartclide.dbapi.model.Workflow;
 import com.smartclide.dbapi.repository.WorkflowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +20,17 @@ public class WorkflowController {
     @Autowired
     private WorkflowRepository repository;
 
+    @Autowired
+    private MongoTemplate template;
+
     @GetMapping("/workflows")
-    public List<Workflow> getAllWorkflows() {
-        return repository.findAll();
+    public List<Workflow> getAllWorkflows(@RequestParam(value = "user_id",required = false) String userId) {
+        Query query = new Query();
+        if (userId != null) {
+            query.addCriteria(Criteria.where("user_id").is(userId));
+        }
+        return template.find(query, Workflow.class, "workflows");
+        //return repository.findAll();
     }
 
     @GetMapping("/workflows/{id}")

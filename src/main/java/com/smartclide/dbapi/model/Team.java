@@ -20,7 +20,7 @@ import java.util.List;
 public class Team {
 
     @Id
-    private String Id;
+    private String id;
 
     @NotNull
     private String name;
@@ -43,7 +43,7 @@ public class Team {
 //    @DocumentReference
 //    private List<Deployment> deployments;
 
-    public Team(String id) {
-        Id = id;
-    }
+//    public Team(String id) {
+//        Id = id;
+//    }
 }

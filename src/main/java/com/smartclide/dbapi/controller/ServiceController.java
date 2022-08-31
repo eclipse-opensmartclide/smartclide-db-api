@@ -42,7 +42,9 @@ public class ServiceController {
                                         @RequestParam(value = "created_before",required = false) String created_before,
                                         @RequestParam(value = "created_after",required = false) String created_after,
                                         @RequestParam(value = "updated_before",required = false) String updated_before,
-                                        @RequestParam(value = "updated_after",required = false) String updated_after) throws ParseException {
+                                        @RequestParam(value = "updated_after",required = false) String updated_after,
+                                        @RequestParam(value = "user_id",required = false) String userId,
+                                        @RequestParam(value = "registry_id",required = false) String registryId) throws ParseException {
         Query query = new Query();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
@@ -119,6 +121,12 @@ public class ServiceController {
         }
         else if (updated_after != null) {
             query.addCriteria(Criteria.where("updated").gte(dateFormat.parse(updated_after)));
+        }
+        if (userId != null) {
+            query.addCriteria(Criteria.where("user_id").is(userId));
+        }
+        if (registryId != null) {
+            query.addCriteria(Criteria.where("registry_id").is(registryId));
         }
 
         return template.find(query, Service.class, "services");

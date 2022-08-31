@@ -26,6 +26,6 @@ public class DeploymentPlatform {
     @NotNull
     private String username;
 
-    @NotNull
+    //@NotNull
     private String token;
 }
