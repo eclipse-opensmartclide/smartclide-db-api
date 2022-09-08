@@ -31,8 +31,10 @@ public class Service {
     //@DBRef(lazy = true)
     //private User user;
 
-    @NotNull
+    //@NotNull
     private String registry_id;
+
+    private String workspace_id;
 
     //@DocumentReference
     //private ServiceRegistry serviceRegistry;
@@ -44,7 +46,7 @@ public class Service {
 
     private String url;
 
-    @NotNull
+    //@NotNull
     private String description;
 
     @NotNull
@@ -58,6 +60,7 @@ public class Service {
     private String framework = "None";
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @CreatedDate
     private Date created;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)

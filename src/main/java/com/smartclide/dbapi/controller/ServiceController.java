@@ -44,7 +44,8 @@ public class ServiceController {
                                         @RequestParam(value = "updated_before",required = false) String updated_before,
                                         @RequestParam(value = "updated_after",required = false) String updated_after,
                                         @RequestParam(value = "user_id",required = false) String userId,
-                                        @RequestParam(value = "registry_id",required = false) String registryId) throws ParseException {
+                                        @RequestParam(value = "registry_id",required = false) String registryId,
+                                        @RequestParam(value = "workspace_id",required = false) String workspaceId) throws ParseException {
         Query query = new Query();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
@@ -128,6 +129,9 @@ public class ServiceController {
         if (registryId != null) {
             query.addCriteria(Criteria.where("registry_id").is(registryId));
         }
+        if (workspaceId != null) {
+            query.addCriteria(Criteria.where("workspace_id").is(workspaceId));
+        }
 
         return template.find(query, Service.class, "services");
     }
@@ -139,6 +143,10 @@ public class ServiceController {
 
     @PostMapping("/services")
     public ResponseEntity<Service> createService(@RequestBody @Valid Service service) {
+        if (service.getCreated() == null) {
+            Date date = new Date();
+            service.setCreated(date);
+        }
         try {
             Service _service = repository.save(service);
             return new ResponseEntity<>(_service, HttpStatus.CREATED);
