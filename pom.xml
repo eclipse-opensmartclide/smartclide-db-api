@@ -9,13 +9,13 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	
-	<groupId>com.opensmartclide</groupId>
+	<groupId>org.eclipse.opensmartclide</groupId>
 	
-	<artifactId>opensmartclide-db-api</artifactId>
+	<artifactId>dbapi</artifactId>
 	
 	<version>0.0.1-SNAPSHOT</version>
 	
-	<name>opensmartclide-db-api</name>
+	<name>eclipse-opensmartclide-db-api</name>
 	
 	<description>The DB API of the OpenSmartCLIDE project.</description>
 	
