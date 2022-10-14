@@ -1,6 +1,6 @@
-# smartclide-db-api
+# The Eclipse OpenSmartCLIDE DB API
 
-A RESTful API for accessing the SmartCLIDE database (MongoDB). The API exposes the following endpoints:
+A RESTful API for accessing the resources of the internal OpenSmartCLIDE database. It exposes the following endpoints:
 
 ## /users (GET,POST,PUT,DELETE)
 
