@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
@@ -23,6 +24,7 @@ public class Service {
     private String id;
 
     @NotNull
+    @TextIndexed
     private String name;
 
     @NotNull
@@ -47,6 +49,7 @@ public class Service {
     private String url;
 
     //@NotNull
+    @TextIndexed
     private String description;
 
     @NotNull

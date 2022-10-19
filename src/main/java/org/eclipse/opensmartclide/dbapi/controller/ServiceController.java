@@ -4,8 +4,11 @@ import org.eclipse.opensmartclide.dbapi.model.Service;
 import org.eclipse.opensmartclide.dbapi.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.index.TextIndexDefinition;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.TextCriteria;
+import org.springframework.data.mongodb.core.query.TextQuery;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +48,17 @@ public class ServiceController {
                                         @RequestParam(value = "updated_after",required = false) String updated_after,
                                         @RequestParam(value = "user_id",required = false) String userId,
                                         @RequestParam(value = "registry_id",required = false) String registryId,
-                                        @RequestParam(value = "workspace_id",required = false) String workspaceId) throws ParseException {
+                                        @RequestParam(value = "workspace_id",required = false) String workspaceId,
+                                        @RequestParam(value = "search",required = false) String search) throws ParseException {
+        if (search != null) {
+            TextIndexDefinition textIndexDefinition = new TextIndexDefinition.TextIndexDefinitionBuilder()
+                    .onField("name")
+                    .onField("description")
+                    .build();
+            TextQuery textQuery = TextQuery.queryText(new TextCriteria().matchingAny(search)).sortByScore();
+            template.indexOps(Service.class).ensureIndex(textIndexDefinition);
+            return template.find(textQuery, Service.class, "services");
+        }
         Query query = new Query();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
