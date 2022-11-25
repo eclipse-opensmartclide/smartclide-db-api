@@ -4,17 +4,17 @@ updates:
     directory: "/"
     schedule:
       # Check for maven dependency updates every weekday at 08:00 UTC
-      interval: "daily"
+      interval: "weekly"
       time: "08:00"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       # Check for updates to GitHub Actions every weekday at 08:00 UTC
-      interval: "daily"
+      interval: "weekly"
       time: "08:00"
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
       # Check for updates to container images every weekday at 08:00 UTC
-      interval: "daily"
+      interval: "weekly"
       time: "08:00"
