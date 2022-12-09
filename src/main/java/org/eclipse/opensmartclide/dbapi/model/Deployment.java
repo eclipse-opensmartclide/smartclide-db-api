@@ -2,7 +2,9 @@ package org.eclipse.opensmartclide.dbapi.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -18,8 +20,10 @@ public class Deployment {
     @Id
     private String id;
 
-    @NotNull
+    //@NotNull
     private String user_id;
+
+    private String user;
 
     //@DocumentReference
     //private User user;
@@ -30,25 +34,36 @@ public class Deployment {
     //@DocumentReference
     //private GitCredentials gitCredentials;
 
-    @NotNull
+    //@NotNull
     private String name;
 
-    @NotNull
-    private String url;
+    private String project;
+
+    //@NotNull
+    //private String url;
 
     @NotNull
+    private String service_url;
+
+    private String k8s_url;
+
+    private Integer port;
+
+    private Integer replicas;
+
+    //@NotNull
     private String workflow_id;
 
     //@DocumentReference
     //private Workflow workflow;
 
-    @NotNull
+    //@NotNull
     private String service_id;
 
     //@DocumentReference
     //private Service service;
 
-    @NotNull
+    //@NotNull
     private String version;
 
     //@NotNull
@@ -57,10 +72,17 @@ public class Deployment {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @Field("created_at")
     @JsonProperty("created_at")
+    @CreatedDate
     private Date created;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @Field("updated_at")
     @JsonProperty("updated_at")
+    @LastModifiedDate
     private Date updated;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @Field("stopped_at")
+    @JsonProperty("stopped_at")
+    private Date stopped;
 }
