@@ -61,8 +61,8 @@ public class DeploymentController {
     @PostMapping("/deployments")
     public ResponseEntity<Deployment> createDeployment(@RequestBody @Valid Deployment deployment) {
         try {
-            Deployment _deployment = repository.save(deployment);
-            return new ResponseEntity<>(_deployment, HttpStatus.CREATED);
+            Deployment db_deployment = repository.save(deployment);
+            return new ResponseEntity<>(db_deployment, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -74,26 +74,26 @@ public class DeploymentController {
             Optional<Deployment> deploymentData = repository.findById(id);
 
             if (deploymentData.isPresent()) {
-                Deployment _deployment = deploymentData.get();
-                _deployment.setUser_id(deployment.getUser_id());
-                _deployment.setUser(deployment.getUser());
-                _deployment.setGit_credentials_id(deployment.getGit_credentials_id());
-                _deployment.setName(deployment.getName());
-                //_deployment.setUrl(deployment.getUrl());
-                _deployment.setService_url(deployment.getService_url());
-                _deployment.setProject(deployment.getProject());
-                _deployment.setPort(deployment.getPort());
-                _deployment.setReplicas(deployment.getReplicas());
-                _deployment.setK8s_url(deployment.getK8s_url());
-                _deployment.setWorkflow_id(deployment.getWorkflow_id());
-                _deployment.setService_id(deployment.getService_id());
-                _deployment.setVersion(deployment.getVersion());
-                _deployment.setState(deployment.getState());
-                _deployment.setCreated(deployment.getCreated());
-                //_deployment.setUpdated(deployment.getUpdated());
-                _deployment.setStopped(deployment.getStopped());
+                Deployment db_deployment = deploymentData.get();
+                db_deployment.setUser_id(deployment.getUser_id());
+                db_deployment.setUser(deployment.getUser());
+                db_deployment.setGit_credentials_id(deployment.getGit_credentials_id());
+                db_deployment.setName(deployment.getName());
+                //db_deployment.setUrl(deployment.getUrl());
+                db_deployment.setService_url(deployment.getService_url());
+                db_deployment.setProject(deployment.getProject());
+                db_deployment.setPort(deployment.getPort());
+                db_deployment.setReplicas(deployment.getReplicas());
+                db_deployment.setK8s_url(deployment.getK8s_url());
+                db_deployment.setWorkflow_id(deployment.getWorkflow_id());
+                db_deployment.setService_id(deployment.getService_id());
+                db_deployment.setVersion(deployment.getVersion());
+                db_deployment.setState(deployment.getState());
+                db_deployment.setCreated(deployment.getCreated());
+                //db_deployment.setUpdated(deployment.getUpdated());
+                db_deployment.setStopped(deployment.getStopped());
 
-                return new ResponseEntity<>(repository.save(_deployment), HttpStatus.OK);
+                return new ResponseEntity<>(repository.save(db_deployment), HttpStatus.OK);
             }
             else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
