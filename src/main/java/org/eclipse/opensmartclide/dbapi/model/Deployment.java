@@ -20,7 +20,7 @@ public class Deployment {
     @Id
     private String id;
 
-    //@NotNull
+    @NotNull
     private String user_id;
 
     private String user;
@@ -34,7 +34,7 @@ public class Deployment {
     //@DocumentReference
     //private GitCredentials gitCredentials;
 
-    //@NotNull
+    @NotNull
     private String name;
 
     private String project;
@@ -57,13 +57,13 @@ public class Deployment {
     //@DocumentReference
     //private Workflow workflow;
 
-    //@NotNull
+    @NotNull
     private String service_id;
 
     //@DocumentReference
     //private Service service;
 
-    //@NotNull
+    @NotNull
     private String version;
 
     //@NotNull
