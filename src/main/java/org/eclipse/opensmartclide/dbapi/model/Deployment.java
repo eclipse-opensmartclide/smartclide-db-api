@@ -23,12 +23,13 @@ public class Deployment {
     @NotNull
     private String user_id;
 
+    @NotNull
     private String user;
 
     //@DocumentReference
     //private User user;
 
-    //@NotNull
+    @NotNull
     private String git_credentials_id;
 
     //@DocumentReference
@@ -37,6 +38,7 @@ public class Deployment {
     @NotNull
     private String name;
 
+    @NotNull
     private String project;
 
     //@NotNull
@@ -45,13 +47,15 @@ public class Deployment {
     @NotNull
     private String service_url;
 
+    @NotNull
     private String k8s_url;
 
+    @NotNull
     private Integer port;
 
     private Integer replicas;
 
-    //@NotNull
+    @NotNull
     private String workflow_id;
 
     //@DocumentReference
@@ -63,10 +67,9 @@ public class Deployment {
     //@DocumentReference
     //private Service service;
 
-    @NotNull
     private String version;
 
-    //@NotNull
+    @NotNull
     private String state;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
