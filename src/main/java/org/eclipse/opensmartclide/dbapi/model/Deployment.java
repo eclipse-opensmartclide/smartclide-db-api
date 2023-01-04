@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -20,48 +21,48 @@ public class Deployment {
     @Id
     private String id;
 
-    @NotNull
+    @NotEmpty
     private String user_id;
 
-    @NotNull
+    @NotEmpty
     private String user;
 
     //@DocumentReference
     //private User user;
 
-    @NotNull
+    @NotEmpty
     private String git_credentials_id;
 
     //@DocumentReference
     //private GitCredentials gitCredentials;
 
-    @NotNull
+    @NotEmpty
     private String name;
 
-    @NotNull
+    @NotEmpty
     private String project;
 
     //@NotNull
     //private String url;
 
-    @NotNull
+    @NotEmpty
     private String service_url;
 
-    @NotNull
+    @NotEmpty
     private String k8s_url;
 
-    @NotNull
+    @NotEmpty
     private Integer port;
 
     private Integer replicas;
 
-    @NotNull
+    @NotEmpty
     private String workflow_id;
 
     //@DocumentReference
     //private Workflow workflow;
 
-    @NotNull
+    @NotEmpty
     private String service_id;
 
     //@DocumentReference
@@ -69,7 +70,7 @@ public class Deployment {
 
     private String version;
 
-    @NotNull
+    @NotEmpty
     private String state;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
