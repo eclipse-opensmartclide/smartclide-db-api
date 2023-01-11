@@ -32,24 +32,24 @@ public class ServiceController {
     private MongoTemplate template;
 
     @GetMapping("/services")
-    public List<Service> getAllServices(@RequestParam(value = "licence",required = false) String licence,
-                                        @RequestParam(value = "framework",required = false) String framework,
-                                        @RequestParam(value = "min_stars",required = false) String min_stars,
-                                        @RequestParam(value = "max_stars",required = false) String max_stars,
-                                        @RequestParam(value = "min_forks",required = false) String min_forks,
-                                        @RequestParam(value = "max_forks",required = false) String max_forks,
-                                        @RequestParam(value = "min_watchers",required = false) String min_watchers,
-                                        @RequestParam(value = "max_watchers",required = false) String max_watchers,
-                                        @RequestParam(value = "url",required = false) String url,
-                                        @RequestParam(value = "deployable",required = false) String deployable,
-                                        @RequestParam(value = "created_before",required = false) String created_before,
-                                        @RequestParam(value = "created_after",required = false) String created_after,
-                                        @RequestParam(value = "updated_before",required = false) String updated_before,
-                                        @RequestParam(value = "updated_after",required = false) String updated_after,
-                                        @RequestParam(value = "user_id",required = false) String userId,
-                                        @RequestParam(value = "registry_id",required = false) String registryId,
-                                        @RequestParam(value = "workspace_id",required = false) String workspaceId,
-                                        @RequestParam(value = "search",required = false) String search) throws ParseException {
+    public List<Service> getAllServices(@RequestParam(value = "licence", required = false) String licence,
+                                        @RequestParam(value = "framework", required = false) String framework,
+                                        @RequestParam(value = "min_stars", required = false) String min_stars,
+                                        @RequestParam(value = "max_stars", required = false) String max_stars,
+                                        @RequestParam(value = "min_forks", required = false) String min_forks,
+                                        @RequestParam(value = "max_forks", required = false) String max_forks,
+                                        @RequestParam(value = "min_watchers", required = false) String min_watchers,
+                                        @RequestParam(value = "max_watchers", required = false) String max_watchers,
+                                        @RequestParam(value = "url", required = false) String url,
+                                        @RequestParam(value = "deployable", required = false) String deployable,
+                                        @RequestParam(value = "created_before", required = false) String created_before,
+                                        @RequestParam(value = "created_after", required = false) String created_after,
+                                        @RequestParam(value = "updated_before", required = false) String updated_before,
+                                        @RequestParam(value = "updated_after", required = false) String updated_after,
+                                        @RequestParam(value = "user_id", required = false) String userId,
+                                        @RequestParam(value = "registry_id", required = false) String registryId,
+                                        @RequestParam(value = "workspace_id", required = false) String workspaceId,
+                                        @RequestParam(value = "search", required = false) String search) throws ParseException {
         if (search != null) {
             TextIndexDefinition textIndexDefinition = new TextIndexDefinition.TextIndexDefinitionBuilder()
                     .onField("name")
