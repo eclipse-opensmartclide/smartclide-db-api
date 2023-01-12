@@ -20,22 +20,41 @@
 	<description>The DB API of the OpenSmartCLIDE project.</description>
 	
 	<properties>
-		<!-- it should be 8 -->
+		<!-- it should be 11 -->
 		<java.version>8</java.version>
 	</properties>
 	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+	
+		<!-- MongoDB persistence -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
 		
-		<!-- all required dependencies for testing -->
+		<!-- unit testing -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		
+		<!-- the H2 DB for mocking repositories in unit testing -->
+		<dependency>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		    <scope>test</scope>
+		</dependency>
+		
+		
+		
+		
+		
 		
 		<!-- junit dependency -->
 		<dependency>
@@ -45,11 +64,9 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
 
+
+		<!-- lombok dependency -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -64,12 +81,7 @@
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 		
-		<!-- The H2 DB is an in-memory database. It eliminates the need for configuring and starting an actual database for test purposes. -->
-		<dependency>
-		    <groupId>com.h2database</groupId>
-		    <artifactId>h2</artifactId>
-		    <scope>test</scope>
-		</dependency>
+
 	</dependencies>
 
 	<build>
