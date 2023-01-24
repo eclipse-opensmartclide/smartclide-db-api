@@ -12,6 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Min;
 import java.util.Date;
 
 @Document(collection = "deployments")
@@ -51,7 +52,8 @@ public class Deployment {
     @NotEmpty
     private String k8s_url;
 
-    @NotEmpty
+    @NotNull
+    @Min(value = 1, message = "Port is a positive integer number (up to 65535).")
     private Integer port;
 
     private Integer replicas;
