@@ -18,7 +18,7 @@ class UserRepositoryTest {
 	UserRepository userRepository;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
     	User user = new User();
     	user.setId(Long.toString(1L));
     	user.setEmail("testUser@email.com");

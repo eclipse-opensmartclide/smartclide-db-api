@@ -18,7 +18,7 @@ class TeamRepositoryTest {
 	TeamRepository teamRepository;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
     	Team team = new Team();
     	team.setId(Long.toString(1L));
     	team.setName("testTeamName");

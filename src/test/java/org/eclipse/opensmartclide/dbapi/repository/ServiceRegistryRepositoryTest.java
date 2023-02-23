@@ -18,7 +18,7 @@ class ServiceRegistryRepositoryTest {
 	ServiceRegistryRepository serviceRegistryRepository;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
     	ServiceRegistry serviceRegistry = new ServiceRegistry();   	
     	serviceRegistry.setId(Long.toString(1L));
     	serviceRegistry.setUser_id("testServiceRegistryUserId");

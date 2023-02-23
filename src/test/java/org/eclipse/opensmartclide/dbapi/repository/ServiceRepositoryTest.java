@@ -22,7 +22,7 @@ class ServiceRepositoryTest {
 	ServiceRepository serviceRepository;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws Exception  {
     	Service service = new Service();
     	service.setId(Long.toString(1L));
     	service.setName("testServiceName");
