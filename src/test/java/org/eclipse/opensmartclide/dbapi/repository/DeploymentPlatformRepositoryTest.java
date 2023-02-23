@@ -3,7 +3,7 @@ package org.eclipse.opensmartclide.dbapi.repository;
 import static org.junit.Assert.assertEquals;
 import java.util.Optional;
 import org.eclipse.opensmartclide.dbapi.model.DeploymentPlatform;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +15,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 class DeploymentPlatformRepositoryTest {
 
 	@Autowired
-	DeploymentPlatformRepository deploymentPlatformRepository;
+	private DeploymentPlatformRepository deploymentPlatformRepository;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
     	DeploymentPlatform deploymentPlatform = new DeploymentPlatform();
     	deploymentPlatform.setId(Long.toString(1L));
@@ -25,6 +25,7 @@ class DeploymentPlatformRepositoryTest {
     	deploymentPlatform.setUrl("testDeploymentPlatformUrl");
     	deploymentPlatform.setUsername("testDeploymentPlatformUsername");
     	deploymentPlatform.setToken("testDeploymentPlatformToken");
+    	
     	deploymentPlatformRepository.save(deploymentPlatform);
     }
     

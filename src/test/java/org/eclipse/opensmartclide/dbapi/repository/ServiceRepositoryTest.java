@@ -3,7 +3,7 @@ package org.eclipse.opensmartclide.dbapi.repository;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 import org.eclipse.opensmartclide.dbapi.model.Service;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +19,9 @@ import java.util.Optional;
 class ServiceRepositoryTest {
 	
 	@Autowired
-	ServiceRepository serviceRepository;
+	private ServiceRepository serviceRepository;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception  {
     	Service service = new Service();
     	service.setId(Long.toString(1L));
@@ -35,10 +35,13 @@ class ServiceRepositoryTest {
     	service.setIsPublic(true);
     	service.setLicence("testServiceLicense");
     	service.setFramework("testServiceFramework");
-    	Date createdDate = new SimpleDateFormat("dd/mm/yyyy").parse("10/01/2022");
-    	Date updatedDate = new SimpleDateFormat("dd/mm/yyyy").parse("20/03/2022");
+    	
+    	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/mm/yyyy");
+    	Date createdDate = simpleDateFormat.parse("10/01/2022");
+    	Date updatedDate = simpleDateFormat.parse("20/03/2022");
     	service.setCreated(createdDate);
     	service.setUpdated(updatedDate);
+    	
     	serviceRepository.save(service);
     }
 

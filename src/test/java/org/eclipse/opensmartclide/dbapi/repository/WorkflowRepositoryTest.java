@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Optional;
 import org.eclipse.opensmartclide.dbapi.model.Workflow;
 import org.eclipse.opensmartclide.dbapi.repository.WorkflowRepository;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +20,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 class WorkflowRepositoryTest {
 
 	@Autowired
-	WorkflowRepository workflowRepository;
+	private WorkflowRepository workflowRepository;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
     	Workflow workflow = new Workflow();
     	workflow.setId(Long.toString(1L));
@@ -32,10 +32,13 @@ class WorkflowRepositoryTest {
     	workflow.setUrl("testWorkflowUrl");
     	workflow.setDescription("testWorkflowDescription");
     	workflow.setIs_public(true);
-    	Date createdDate = new SimpleDateFormat("dd/mm/yyyy").parse("15/09/2022");
-    	Date updatedDate = new SimpleDateFormat("dd/mm/yyyy").parse("11/07/2022");
+    	
+    	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/mm/yyyy");
+    	Date createdDate = simpleDateFormat.parse("15/09/2022");
+    	Date updatedDate = simpleDateFormat.parse("11/07/2022");
     	workflow.setCreated(createdDate);
     	workflow.setUpdated(updatedDate);
+    	
     	workflowRepository.save(workflow);
     }
     

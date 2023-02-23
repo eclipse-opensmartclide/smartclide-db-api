@@ -3,7 +3,7 @@ package org.eclipse.opensmartclide.dbapi.repository;
 import static org.junit.Assert.assertEquals;
 import java.util.Optional;
 import org.eclipse.opensmartclide.dbapi.model.Team;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +15,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 class TeamRepositoryTest {
 
 	@Autowired
-	TeamRepository teamRepository;
+	private TeamRepository teamRepository;
 
-    @Before
+    @BeforeEach
     public void setUp() {
     	Team team = new Team();
     	team.setId(Long.toString(1L));
     	team.setName("testTeamName");
+    	
     	teamRepository.save(team);
     }
 

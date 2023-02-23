@@ -3,7 +3,7 @@ package org.eclipse.opensmartclide.dbapi.repository;
 import static org.junit.Assert.assertEquals;
 import java.util.Optional;
 import org.eclipse.opensmartclide.dbapi.model.GitCredentials;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,17 +15,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 class GitCredentialsRepositoryTest {
 
 	@Autowired
-	GitCredentialsRepository gitCredentialsRepository;
+	private GitCredentialsRepository gitCredentialsRepository;
 
-    @Before
+    @BeforeEach
     public void setUp() {
     	GitCredentials gitCredentials = new GitCredentials();
     	gitCredentials.setId(Long.toString(1L));
     	gitCredentials.setUser_id("testGitCredentialsUserId");
-    	gitCredentials.setToken("testGitCredentialsType");
+    	gitCredentials.setType("testGitCredentialsType");
     	gitCredentials.setUrl("testGitCredentialsUrl");
     	gitCredentials.setUsername("testGitCredentialsUsername");
     	gitCredentials.setToken("testGitCredentialsToken");
+    	
     	gitCredentialsRepository.save(gitCredentials);
     }
     

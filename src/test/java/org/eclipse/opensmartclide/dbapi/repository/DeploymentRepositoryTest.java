@@ -8,8 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 import org.eclipse.opensmartclide.dbapi.model.Deployment;
-import org.eclipse.opensmartclide.dbapi.model.Service;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +20,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 class DeploymentRepositoryTest {
 
 	@Autowired
-	DeploymentRepository deploymentRepository;
+	private DeploymentRepository deploymentRepository;
+	
+	private Date currentDate;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
     	Deployment deployment = new Deployment();
     	deployment.setId(Long.toString(1L));
@@ -41,14 +42,17 @@ class DeploymentRepositoryTest {
     	deployment.setVersion("testDeploymentVersion");
     	deployment.setState("testDeploymentState");
     	
-    	Date createdDate = new SimpleDateFormat("dd/mm/yyyy").parse("01/10/2022");
-    	Date updatedDate = new SimpleDateFormat("dd/mm/yyyy").parse("02/10/2022");
-    	Date stoppedDate = new SimpleDateFormat("dd/mm/yyyy").parse("03/10/2022");    	
+    	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/mm/yyyy");
+    	
+    	Date createdDate = simpleDateFormat.parse("01/10/2022");
+    	currentDate = new Date();
+    	Date updatedDate = simpleDateFormat.parse(simpleDateFormat.format(currentDate));
+    	Date stoppedDate = simpleDateFormat.parse("03/10/2022");    	
     	deployment.setCreated(createdDate);
     	deployment.setUpdated(updatedDate);
     	deployment.setStopped(stoppedDate);
     	
-    	deploymentRepository.save(deployment);
+    	deploymentRepository.save(deployment);	
     }
     
     @Test
@@ -111,14 +115,14 @@ class DeploymentRepositoryTest {
     public void assertDeploymentPortPersisted() {
     	Optional<Deployment> deployment = deploymentRepository.findById(Long.toString(1L));
     	Integer deploymentPort = deployment.get().getPort();
-    	assertEquals(8080, deploymentPort);
+    	assertEquals(Integer.valueOf(8080), deploymentPort);
     }
     
     @Test
     public void assertDeploymentReplicasPersisted() {
     	Optional<Deployment> deployment = deploymentRepository.findById(Long.toString(1L));
     	Integer deploymentReplicas = deployment.get().getReplicas();
-    	assertEquals(2, deploymentReplicas);
+    	assertEquals(Integer.valueOf(2), deploymentReplicas);
     }
     
     @Test
@@ -160,7 +164,7 @@ class DeploymentRepositoryTest {
     public void assertDeploymentUpdatedDatePersisted() throws ParseException {
     	Optional<Deployment> deployment = deploymentRepository.findById(Long.toString(1L));
     	Date deploymentUpdatedDate = deployment.get().getUpdated();
-    	assertTrue(deploymentUpdatedDate.equals(new SimpleDateFormat("dd/mm/yyyy").parse("02/10/2022")));
+    	assertTrue(deploymentUpdatedDate.toString().equals(currentDate.toString()));
     }
     
     @Test
