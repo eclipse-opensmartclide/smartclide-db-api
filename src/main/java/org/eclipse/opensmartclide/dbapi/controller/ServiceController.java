@@ -189,7 +189,7 @@ public class ServiceController {
                 _service.setUser_id(service.getUser_id());
                 _service.setRegistry_id(service.getRegistry_id());
                 _service.setGit_credentials_id(service.getGit_credentials_id());
-                service.setUrl(service.getUrl());
+                _service.setUrl(service.getUrl());
                 _service.setDescription(service.getDescription());
                 _service.setIsPublic(service.getIsPublic());
                 _service.setLicence(service.getLicence());
