@@ -49,7 +49,8 @@ public class ServiceController {
                                         @RequestParam(value = "user_id",required = false) String userId,
                                         @RequestParam(value = "registry_id",required = false) String registryId,
                                         @RequestParam(value = "workspace_id",required = false) String workspaceId,
-                                        @RequestParam(value = "search",required = false) String search) throws ParseException {
+                                        @RequestParam(value = "search",required = false) String search,
+                                        @RequestParam(value = "is_public",required = false) String is_public) throws ParseException {
         if (search != null) {
             TextIndexDefinition textIndexDefinition = new TextIndexDefinition.TextIndexDefinitionBuilder()
                     .onField("name")
@@ -111,6 +112,10 @@ public class ServiceController {
         }
         if (deployable != null) {
             query.addCriteria(Criteria.where("deployable").is(Boolean.valueOf(deployable)));
+        }
+
+        if (is_public != null) {
+            query.addCriteria(Criteria.where("is_public").is(Boolean.valueOf(is_public)));
         }
 
         if (created_before != null && created_after != null) {
